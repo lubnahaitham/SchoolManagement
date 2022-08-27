@@ -1,0 +1,191 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% block content %}
+<style>
+  {% comment %} body{
+        margin-left: 10px;
+    }
+        table {
+            border-collapse: collapse;
+            padding: 1px;
+             margin-left: 5px;
+        } {% endcomment %}
+
+        td, th {
+            {% comment %} border: black solid 1px; {% endcomment %}
+            text-align: left;
+            padding: 5px;
+            {% comment %} font-size: 12px; {% endcomment %}
+        } 
+
+      
+    </style>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <br>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" >Invoice</th>
+                        <th scope="col" >Year</th>
+                        <th scope="col" >Session</th>
+                        <th scope="col">Term</th>
+                        <th scope="col">Class</th>
+                        <th scope="col" >Status</th>
+                        <th scope="col">Expected Balance</th>
+
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>{{ invoice_pdf }} </td>
+                        <td >{{ invoice_pdf.year }} </td>
+                        <td >{{ invoice_pdf.session }} </td>
+                        <td >{{ invoice_pdf.term }} </td>
+                        <td >{{ invoice_pdf.class_for }} </td>
+                        <td >{{ invoice_pdf.get_status_display }} </td>
+                        <td >{{ invoice_pdf.balance  }}</td>
+                       
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+  
+
+
+{% comment %} <div class="row"> {% endcomment %}
+   
+    {% comment %} <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-4">
+
+                <table class="table">
+                    <h2>Invoice Breakdown</h2>
+                    <thead>
+                    <tr>
+                        <th scope="col">S/N</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Amount</th>
+                       
+
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>{{ invoice_pdf }} </td>
+                        <td>{{ invoice_pdf.description }} </td>
+                        <td>{{ invoice_pdf.amount }} </td>
+                      
+                       
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div> {% endcomment %}
+
+    <div class="col-sm-8">
+      <table class="table table-sm table-bordered">
+      </br>
+        <h3>Invoice Breakdown </h3>
+
+        </br>
+        <thead class="thead-light">
+          <tr>
+            {% comment %} <th>S/N</th> {% endcomment %}
+            <th>Description</th>
+            <th style="margin-left:320px">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ invoiceitem_pdf.description }} </td>
+            <td>{{ invoiceitem_pdf.amount }} </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td></td>
+            <td>Total Amount this term</td>
+            <td>{{ invoice_pdf.amount_payable }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Balance from previous term</td>
+            <td>{{ invoice_pdf.balance_from_previous_term  }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Total Amount Payable</td>
+            <td>{{ invoice_pdf.total_amount_payable }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Total Amount Paid</td>
+            <td>{{ invoice_pdf.total_amount_paid }}</td>
+          </tr>
+  
+        </tfoot>
+      </table>
+    </div>
+  
+  <hr>
+  
+  <h5>Payment History</h5>
+  <table class="table table-bordered table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th>Amount Paid</th>
+        <td>{{ receipt_pdf.amount_paid}}</td>
+
+        <th>Date Paid</th>
+        <td>{{ receipt_pdf.date_paid}}</td>
+
+        <th>Comment Paid</th>
+        <td>{{ receipt_pdf.comment}}</td>
+
+      </tr>
+    </thead>
+
+    {% comment %} {% for receipt in receipt_pdf %} {% endcomment %}
+    {% comment %} <tr>
+      <td>{{ forloop.counter }}</td>
+   <td>{{ receipt_pdf.amount_paid}}</td> 
+      <td>{{ receipt_pdf.date_paid}}</td>
+      <td>{{ receipt_pdf.comment}}</td>
+    </tr> 
+    {% comment %} {% endfor %} {% endcomment %}
+    </tbody>
+  </table>
+  
+
+
+        
+
+    
+    </div>
+    </div>
+{% endblock content %}
+
+
